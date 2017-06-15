@@ -1,15 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
-module.exports = (knex) => {
+module.exports = (knex, passport) => {
 
   //GET Login Page
   router.get('/', function(req, res) {
-    res.render('index');
+    res.render('login');
   });
-  //GET FAQ Page ***
-  router.post('/faq', function(req, res) {
-    res.render('faq');
-  });
+  //Post Login ***
+  router.post('/login',
+    passport.authenticate('local', { successRedirect: '/',
+                                     failureRedirect: '/login',
+                                     failureFlash: true })
+  );
   return router;
 };
