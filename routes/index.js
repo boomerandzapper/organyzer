@@ -1,9 +1,21 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index');
-});
+module.exports = (knex) => {
 
-module.exports = router;
+  //GET Landing Page
+  router.get('/', function(req, res) {
+    res.render('index');
+  });
+  //GET FAQ Page
+  router.get('/faq', function(req, res) {
+    res.render('faq');
+  });
+  //GET About Page
+  router.get('/about', function(req, res) {
+    res.render('about');
+  });
+  return router;
+};
+
+
